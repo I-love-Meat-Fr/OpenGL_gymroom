@@ -171,18 +171,31 @@ def draw_bench_press(x, y, z, rot_y):
     # Barbell
     glColor3f(0.8, 0.8, 0.8)
     glPushMatrix()
-    glTranslatef(-0.8, 1.25, -0.6)
+    glTranslatef(-0.8, 1.2, -0.6)
     glRotatef(90, 0, 1, 0)
     gluCylinder(quadric, 0.02, 0.02, 1.6, 10, 1)
     glPopMatrix()
     
     # Weights
     glColor3f(0.2, 0.2, 0.2)
+    
+    # Left Weight (Thick 0.2)
     glPushMatrix()
-    glTranslatef(-0.7, 1.25, -0.6)
+    glTranslatef(-0.8, 1.2, -0.6)
     glRotatef(90, 0, 1, 0)
     gluDisk(quadric, 0.02, 0.2, 20, 1)
-    glTranslatef(0, 0, 1.4)
+    gluCylinder(quadric, 0.2, 0.2, 0.2, 20, 1)
+    glTranslatef(0, 0, 0.2)
+    gluDisk(quadric, 0.02, 0.2, 20, 1)
+    glPopMatrix()
+    
+    # Right Weight (Thick 0.2)
+    glPushMatrix()
+    glTranslatef(0.6, 1.2, -0.6)
+    glRotatef(90, 0, 1, 0)
+    gluDisk(quadric, 0.02, 0.2, 20, 1)
+    gluCylinder(quadric, 0.2, 0.2, 0.2, 20, 1)
+    glTranslatef(0, 0, 0.2)
     gluDisk(quadric, 0.02, 0.2, 20, 1)
     glPopMatrix()
     
@@ -246,9 +259,9 @@ def draw_dumbbell_rack(x, y, z, rot_y):
     glPopMatrix()
     
     # Dumbbells on top shelf
-    for i in range(-5, 6):
+    for i in range(-4, 5):
         glPushMatrix()
-        glTranslatef(i * 0.25, 0.85, 0)
+        glTranslatef(i * 0.3, 0.85, 0)
         glColor3f(0.7, 0.7, 0.7)
         # Handle
         glPushMatrix()
