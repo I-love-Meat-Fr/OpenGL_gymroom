@@ -24,7 +24,7 @@ def init_opengl():
     glEnable(GL_LIGHTING)
     glEnable(GL_COLOR_MATERIAL)
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
-    glEnable(GL_NORMALS)
+    glEnable(GL_NORMALIZE)
     
     # Global ambient light
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, [0.2, 0.2, 0.2, 1.0])
@@ -145,15 +145,27 @@ def draw_bench_press(x, y, z, rot_y):
     draw_solid_box(0.4, 0.1, 1.4)
     glPopMatrix()
     
-    # Rack posts
+    # Rack posts (4 pillars)
     glColor3f(0.5, 0.5, 0.5)
+    
+    # Front pillars
     glPushMatrix()
-    glTranslatef(-0.4, 0.6, -0.6)
+    glTranslatef(-0.25, 0.6, -0.6)
     draw_solid_box(0.1, 1.2, 0.1)
     glPopMatrix()
     glPushMatrix()
-    glTranslatef(0.4, 0.6, -0.6)
+    glTranslatef(0.25, 0.6, -0.6)
     draw_solid_box(0.1, 1.2, 0.1)
+    glPopMatrix()
+    
+    # Back pillars
+    glPushMatrix()
+    glTranslatef(-0.25, 0.4, 0.4)
+    draw_solid_box(0.1, 0.8, 0.1)
+    glPopMatrix()
+    glPushMatrix()
+    glTranslatef(0.25, 0.4, 0.4)
+    draw_solid_box(0.1, 0.8, 0.1)
     glPopMatrix()
     
     # Barbell
@@ -246,13 +258,28 @@ def draw_dumbbell_rack(x, y, z, rot_y):
         glPopMatrix()
         # Weights
         glColor3f(0.1, 0.1, 0.1)
+        
+        # Left Weight
         glPushMatrix()
-        glTranslatef(-0.1, 0, 0)
+        glTranslatef(-0.14, 0, 0)
         glRotatef(90, 0, 1, 0)
         gluDisk(quadric, 0.015, 0.08, 10, 1)
-        glTranslatef(0, 0, 0.2)
+        gluCylinder(quadric, 0.08, 0.08, 0.04, 10, 1)
+        glTranslatef(0, 0, 0.04)
         gluDisk(quadric, 0.015, 0.08, 10, 1)
         glPopMatrix()
+        
+        # Right Weight
+        glPushMatrix()
+        glTranslatef(0.1, 0, 0)
+        glRotatef(90, 0, 1, 0)
+        gluDisk(quadric, 0.015, 0.08, 10, 1)
+        gluCylinder(quadric, 0.08, 0.08, 0.04, 10, 1)
+        glTranslatef(0, 0, 0.04)
+        gluDisk(quadric, 0.015, 0.08, 10, 1)
+        glPopMatrix()
+        
+        # Pop the dumbbell matrix
         glPopMatrix()
         
     glPopMatrix()
